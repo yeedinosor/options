@@ -1,4 +1,4 @@
-const url = 'http://73.162.165.166:3000/';
+const url = 'https://73.162.165.166:3000/';
 
 fetch(url, {method: 'GET'})
 .then(response => {

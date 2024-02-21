@@ -1,5 +1,5 @@
-const http = require('http');
-
+const http = require('https');
+const fs = require('fs');
 
 const url = 'https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d';
 const headers = new Headers({
@@ -32,7 +32,12 @@ fetch(url, {
   console.error('There was a problem with your fetch operation:', error);
 });
 
-const server = http.createServer((req, res) => {
+const options = {
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+};
+
+const server = http.createServer(options, (req, res) => {
 res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
